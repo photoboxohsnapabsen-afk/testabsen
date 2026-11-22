@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://drive.google.com https://*.googleusercontent.com https://*.supabase.co; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://*.supabase.co; media-src 'self' blob: data:; object-src 'none'; base-uri 'none'; form-action 'self'" />
+<meta name="referrer" content="no-referrer" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Foto Laporan — Oh Snap! Photobox</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  /* Palet & tipografi sama dengan portal utama (pink #ec298b / navy #19449a) */
+  :root { --bg:#fff7fb; --card:#ffffff; --ink:#0f172a; --muted:#64748b; --pink:#ec298b; --pink-deep:#da2b8a; --navy:#19449a; --blue:#2563eb; --line:#fbcfe8; --soft:#fff1f8; --err:#be123c;
+    --grad:linear-gradient(135deg,#ec298b 0%,#d92682 45%,#1d4ed8 100%); --shadow:0 1px 2px rgba(25,68,154,.04),0 10px 28px -14px rgba(218,43,138,.28); }
+  * { box-sizing:border-box; }
+  html { -webkit-text-size-adjust:100%; }
+  body { margin:0; font-family:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; color:var(--ink); min-height:100vh; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    background:radial-gradient(900px 480px at 0% 0%,#ffd4eb 0%,transparent 60%),radial-gradient(900px 520px at 100% 0%,#dbeafe 0%,transparent 60%),var(--bg); background-attachment:fixed; }
+  body::before { content:""; position:fixed; inset:0 0 auto 0; height:4px; background:var(--grad); z-index:5; }
+  .oi { width:1.2em; height:1.2em; flex-shrink:0; fill:none; stroke:currentColor; stroke-width:2.1; stroke-linecap:round; stroke-linejoin:round; vertical-align:-0.24em; }
+  header { position:sticky; top:0; z-index:4; padding:16px 20px 12px; background:rgba(255,255,255,.86); -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px); border-bottom:1px solid var(--line); }
+  .bar { max-width:980px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+  .brand { display:flex; align-items:center; gap:12px; min-width:0; }
+  .brand-ico { width:44px; height:44px; border-radius:14px; display:grid; place-items:center; color:#fff; background:var(--grad); box-shadow:0 8px 18px -8px rgba(236,41,139,.7); font-size:19px; flex-shrink:0; }
+  .brand h1 { margin:0; font-family:"Fredoka","Plus Jakarta Sans",sans-serif; font-weight:700; font-size:20px; line-height:1.15; letter-spacing:.2px; }
+  .brand h1 .p { color:var(--pink-deep); } .brand h1 .n { color:var(--navy); }
+  .brand small { display:block; font-size:12px; font-weight:600; color:var(--muted); margin-top:2px; }
+  main { max-width:980px; margin:0 auto; padding:24px 16px 48px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:24px; padding:24px; margin:0 auto 16px; box-shadow:var(--shadow); }
+  #loginBox { max-width:440px; }
+  .card strong { display:flex; align-items:center; gap:8px; font-size:17px; font-weight:800; color:var(--navy); }
+  .card strong .oi { color:var(--pink); }
+  label { display:block; font-size:12px; font-weight:700; color:var(--navy); margin:16px 0 6px; }
+  select, input { width:100%; height:46px; padding:0 14px; border-radius:14px; border:1.5px solid var(--line); background:#fff; color:var(--ink); font-family:inherit; font-size:15px; font-weight:600; transition:border-color .15s, box-shadow .15s; }
+  select { -webkit-appearance:none; appearance:none; padding-right:40px; background-repeat:no-repeat; background-position:right 14px center; background-size:16px;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23da2b8a' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); }
+  select:focus, input:focus { outline:none; border-color:var(--pink); box-shadow:0 0 0 4px rgba(236,41,139,.16); }
+  button, a.btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:44px; padding:0 18px; border-radius:14px; border:0; background:var(--grad); color:#fff; font-family:inherit; font-size:14px; font-weight:800; line-height:1; cursor:pointer; text-decoration:none; box-shadow:0 10px 22px -12px rgba(236,41,139,.75); transition:transform .15s, box-shadow .15s, filter .15s, background-color .15s; }
+  button:hover, a.btn:hover { transform:translateY(-1px); filter:saturate(1.08); }
+  button:active, a.btn:active { transform:translateY(0) scale(.98); }
+  button:focus-visible, a.btn:focus-visible { outline:3px solid rgba(37,99,235,.45); outline-offset:2px; }
+  #btnLogin { width:100%; height:48px; font-size:15px; }
+  button.ghost, a.ghost { min-height:36px; padding:0 14px; border-radius:999px; font-size:13px; background:#fff; color:var(--pink-deep); border:1.5px solid var(--line); box-shadow:none; }
+  button.ghost:hover, a.ghost:hover { background:var(--soft); border-color:var(--pink); }
+  button:disabled { opacity:.6; cursor:wait; transform:none; }
+  .msg { font-size:13px; line-height:1.55; margin:10px 0 0; color:var(--muted); }
+  .msg.err { color:var(--err); font-weight:700; }
+  #status:not(:empty) { display:inline-block; margin:0 0 16px; padding:8px 14px; border-radius:999px; background:#fff; border:1px solid var(--line); font-weight:700; color:var(--navy); }
+  #status.err:not(:empty) { color:var(--err); background:#fff1f2; border-color:#fecdd3; }
+  main { display:flex; flex-direction:column; }
+  #status { order:-1; align-self:flex-start; }
+  #galleryBox { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr)); gap:16px; }
+  figure { margin:0; padding:12px; background:var(--card); border:1px solid var(--line); border-radius:24px; box-shadow:var(--shadow); }
+  figure img { width:100%; height:auto; border-radius:16px; background:var(--soft); display:block; }
+  figure > .msg { margin:0; padding:48px 12px; text-align:center; border-radius:16px; background:var(--soft); }
+  figcaption { margin-top:12px; padding:0 4px 2px; display:flex; gap:8px; flex-wrap:wrap; align-items:center; font-size:12px; font-weight:600; color:var(--muted); }
+  figcaption > span:first-child { flex:1 0 100%; font-size:13px; font-weight:800; color:var(--navy); }
+  figcaption .dim { margin-left:auto; font-variant-numeric:tabular-nums; }
+  .hidden { display:none !important; }
+  @media (max-width:480px) { header { padding:14px 14px 10px; } .brand h1 { font-size:18px; } .card { padding:20px; border-radius:20px; } }
+  @media (prefers-reduced-motion:reduce) { * { transition:none !important; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="bar">
+    <div class="brand">
+      <span class="brand-ico"><svg class="oi" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/> <circle cx="12" cy="13" r="3"/></svg></span>
+      <div>
+        <h1><span class="p">OH</span> <span class="n">SNAP!</span></h1>
+        <small>Foto Laporan &bull; Akses privat</small>
+      </div>
+    </div>
+    <button id="btnLogout" class="ghost hidden" type="button"><svg class="oi" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/> <polyline points="16 17 21 12 16 7"/> <line x1="21" x2="9" y1="12" y2="12"/></svg>Keluar</button>
+  </div>
+</header>
+<main>
+  <section id="loginBox" class="card hidden">
+    <strong><svg class="oi" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/> <path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Login untuk melihat foto</strong>
+    <p class="msg">Foto bersifat privat. Masuk dengan akun yang sama seperti di aplikasi (Admin, atau kru cabang yang bersangkutan).</p>
+    <form id="loginForm" autocomplete="off">
+      <label for="who">Masuk sebagai</label>
+      <select id="who"><option value="ADMIN">Admin</option></select>
+      <label for="pw">Password</label>
+      <input id="pw" type="password" autocomplete="current-password" required />
+      <p style="margin:20px 0 0"><button id="btnLogin" type="submit">Masuk</button></p>
+    </form>
+    <p id="loginMsg" class="msg" role="status"></p>
+  </section>
+
+  <section id="galleryBox" class="hidden"></section>
+  <p id="status" class="msg" role="status"></p>
+</main>
+
+<script>
+(function () {
+  'use strict';
+  var WEBHOOK = 'https://script.google.com/macros/s/AKfycbzWDRLo5bMNHWQeNIkoNXwan67TxgsjSdPow_ZVxVc7AwDHTJxz68l5mj18-sFGbvJh/exec';
+  var VIEWER_KEY = 'ohsnap_viewer_session_v1';
+  var APP_KEY = 'ohsnap_auth_session_v6';
+  var PATH_RE = /^[A-Za-z0-9_-]{2,40}\/\d{4}-\d{2}-\d{2}\/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\.(jpg|png|webp)$/;
+
+  var $ = function (id) { return document.getElementById(id); };
+  var session = null;
+
+  function setStatus(text, isErr) {
+    var el = $('status');
+    el.textContent = text || '';
+    el.className = 'msg' + (isErr ? ' err' : '');
+  }
+
+  function readPaths() {
+    var params = new URLSearchParams((location.hash || '').replace(/^#/, ''));
+    var out = [];
+    params.getAll('p').forEach(function (p) { if (PATH_RE.test(p) && out.indexOf(p) === -1 && out.length < 12) out.push(p); });
+    return out;
+  }
+
+  function loadSession() {
+    var stores = [];
+    try { stores.push(window.sessionStorage); } catch (e) {}
+    try { stores.push(window.localStorage); } catch (e) {}
+    var keys = [VIEWER_KEY, APP_KEY];
+    for (var i = 0; i < stores.length; i++) {
+      for (var j = 0; j < keys.length; j++) {
+        try {
+          var raw = stores[i].getItem(keys[j]);
+          if (!raw) continue;
+          var s = JSON.parse(raw);
+          if (s && typeof s.token === 'string' && Number(s.expiresAt) > Date.now()) return s;
+        } catch (e) {}
+      }
+    }
+    return null;
+  }
+
+  function call(action, fields, token) {
+    var body = new URLSearchParams();
+    body.append('action', action);
+    if (token) body.append('token', token);
+    Object.keys(fields || {}).forEach(function (k) { body.append(k, String(fields[k])); });
+    return fetch(WEBHOOK, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+      body: body.toString(), redirect: 'follow', cache: 'no-store', credentials: 'omit'
+    }).then(function (r) { return r.text(); }).then(function (t) {
+      if (!t || t.trim().charAt(0) !== '{') throw new Error('Respons server tidak valid.');
+      return JSON.parse(t);
+    });
+  }
+
+  function showLogin() {
+    $('galleryBox').classList.add('hidden');
+    $('btnLogout').classList.add('hidden');
+    $('loginBox').classList.remove('hidden');
+    setStatus('');
+    call('get_config', {}).then(function (res) {
+      var branches = (res && res.cloudConfig && res.cloudConfig.branches) || [];
+      var sel = $('who');
+      while (sel.options.length > 1) sel.remove(1);
+      branches.forEach(function (b) {
+        var o = document.createElement('option');
+        o.value = 'BRANCH:' + b;
+        o.textContent = 'Kru — ' + b;
+        sel.appendChild(o);
+      });
+    }).catch(function () {});
+  }
+
+  function expired() {
+    session = null;
+    try { localStorage.removeItem(VIEWER_KEY); } catch (e) {}
+    showLogin();
+    $('loginMsg').textContent = 'Sesi berakhir. Silakan login lagi.';
+    $('loginMsg').className = 'msg err';
+  }
+
+  function figureFor(path) {
+    var fig = document.createElement('figure');
+    var holder = document.createElement('p');
+    holder.className = 'msg';
+    holder.textContent = 'Memuat foto…';
+    fig.appendChild(holder);
+
+    call('photo_view_url', { path: path }, session.token).then(function (res) {
+      if (res && res.code === 'AUTH_REQUIRED') { expired(); return; }
+      if (!res || res.status !== 'success') {
+        holder.textContent = (res && res.message) ? res.message : 'Foto tidak dapat dibuka.';
+        holder.className = 'msg err';
+        return;
+      }
+      var img = document.createElement('img');
+      img.alt = 'Foto laporan';
+      img.referrerPolicy = 'no-referrer';
+      img.onload = function () {
+        cap.querySelector('.dim').textContent = img.naturalWidth + ' × ' + img.naturalHeight + ' px';
+      };
+      img.onerror = function () { holder.textContent = 'Foto gagal dimuat (mungkin sudah dihapus).'; holder.className = 'msg err'; img.remove(); };
+      img.src = res.url;
+      fig.replaceChild(img, holder);
+
+      var open = document.createElement('a');
+      open.className = 'btn ghost'; open.textContent = 'Buka ukuran penuh';
+      open.href = res.url; open.target = '_blank'; open.rel = 'noopener noreferrer';
+      var dl = document.createElement('button');
+      dl.type = 'button'; dl.className = 'ghost'; dl.textContent = 'Unduh';
+      dl.addEventListener('click', function () {
+        fetch(res.url, { credentials: 'omit' }).then(function (r) { return r.blob(); }).then(function (b) {
+          var a = document.createElement('a');
+          a.href = URL.createObjectURL(b);
+          a.download = path.split('/').pop();
+          document.body.appendChild(a); a.click(); a.remove();
+          setTimeout(function () { URL.revokeObjectURL(a.href); }, 5000);
+        }).catch(function () { setStatus('Gagal mengunduh foto.', true); });
+      });
+      var dim = document.createElement('span'); dim.className = 'dim';
+      var cap2 = cap; cap2.appendChild(open); cap2.appendChild(dl); cap2.appendChild(dim);
+    }).catch(function () {
+      holder.textContent = 'Tidak dapat terhubung ke server.';
+      holder.className = 'msg err';
+    });
+
+    var cap = document.createElement('figcaption');
+    var name = document.createElement('span');
+    name.textContent = path.split('/')[0] + ' • ' + path.split('/')[1];
+    cap.appendChild(name);
+    fig.appendChild(cap);
+    return fig;
+  }
+
+  function showGallery() {
+    var paths = readPaths();
+    $('loginBox').classList.add('hidden');
+    $('btnLogout').classList.remove('hidden');
+    var box = $('galleryBox');
+    box.classList.remove('hidden');
+    while (box.firstChild) box.removeChild(box.firstChild);
+    if (!paths.length) {
+      setStatus('Link foto tidak valid. Buka foto dari link di Spreadsheet.', true);
+      return;
+    }
+    setStatus('Masuk sebagai ' + (session.name || session.role) + (session.branch ? ' (' + session.branch + ')' : '') + ' • ' + paths.length + ' foto');
+    paths.forEach(function (p) { box.appendChild(figureFor(p)); });
+  }
+
+  $('loginForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var who = $('who').value;
+    var isAdmin = who === 'ADMIN';
+    var btn = $('btnLogin');
+    btn.disabled = true;
+    $('loginMsg').textContent = 'Memeriksa…';
+    $('loginMsg').className = 'msg';
+    call('login', { role: isAdmin ? 'ADMIN' : 'EMPLOYEE', branch: isAdmin ? '' : who.replace(/^BRANCH:/, ''), password: $('pw').value }).then(function (res) {
+      btn.disabled = false;
+      if (!res || res.status !== 'success') {
+        $('loginMsg').textContent = (res && res.message) || 'Login gagal.';
+        $('loginMsg').className = 'msg err';
+        return;
+      }
+      $('pw').value = '';
+      session = { token: res.token, role: res.role, name: res.name, branch: res.branch, expiresAt: res.expiresAt };
+      try { localStorage.setItem(VIEWER_KEY, JSON.stringify(session)); } catch (e2) {}
+      $('loginMsg').textContent = '';
+      showGallery();
+    }).catch(function () {
+      btn.disabled = false;
+      $('loginMsg').textContent = 'Tidak dapat terhubung ke server.';
+      $('loginMsg').className = 'msg err';
+    });
+  });
+
+  $('btnLogout').addEventListener('click', function () {
+    session = null;
+    try { localStorage.removeItem(VIEWER_KEY); } catch (e) {}
+    showLogin();
+  });
+
+  window.addEventListener('hashchange', function () { if (session) showGallery(); });
+
+  session = loadSession();
+  if (session) showGallery(); else showLogin();
+})();
+</script>
+</body>
+</html>

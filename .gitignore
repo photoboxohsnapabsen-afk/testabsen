@@ -1,0 +1,10 @@
+# Rahasia & data lokal — JANGAN pernah di-commit
+.env
+.env.*
+*.pem
+*.key
+backend/storage/*.json
+node_modules/
+*.lnk
+Thumbs.db
+.DS_Store
